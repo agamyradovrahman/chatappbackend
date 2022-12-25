@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const sendToken = require("../utils/jwtToken");
 
 module.exports.register = async (req, res, next) => {
   try {
@@ -16,8 +17,11 @@ module.exports.register = async (req, res, next) => {
       username,
       password: hashedPassword,
     });
+
+    const token = user.getJwtToken();
+
     delete user.password;
-    return res.json({ status: true, user });
+    return res.json({ status: true, user, token });
   } catch (ex) {
     next(ex);
   }
@@ -30,14 +34,15 @@ module.exports.login = async (req, res, next) => {
     if (!adam) {
       return res.json({ msg: "Username is not exist", status: false });
     }
-    const isPasswordValid = await bcrypt.compare(password, adam.password);
+    const isPasswordValid = await adam.comparePassword(password)
     if (!isPasswordValid) {
       return res.json({ msg: "Incorrect Username or Password", status: false });
     }
     delete adam.password;
-    return res.json({ status: true, adam });
+
+    sendToken(adam,201,res);
   } catch (err) {
-    next(ex);
+    next(err);
   }
 };
 
@@ -59,5 +64,22 @@ module.exports.getsingleuser = async (req, res, next) => {
     return res.json({status: true, user})
   } catch (err) {
     next(err)
+  }
+}
+
+
+module.exports.logoutUser = async (req, res,next) => {
+  try {
+    res.cookie("token", null, {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Log out success",
+    })
+  } catch (error) {
+    console.log(error)
   }
 }
