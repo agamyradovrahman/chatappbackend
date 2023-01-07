@@ -3,10 +3,10 @@ const Messages = require("../models/messageModel");
 
 exports.addMessage = async (req, res, next) => {
   try {
-    const { from, conversation, message } = req.body;
+    const { from, to, message } = req.body;
     const data = await Messages.create({
       message: message,
-      conversation: conversation,
+      to: to,
       sender: from,
     });
 
