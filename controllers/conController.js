@@ -17,3 +17,27 @@ exports.addCon = async (req,res,next) => {
     next(err)
   }
 }
+
+exports.getconuser = async (req,res,next) => {
+  try {
+    const con = await Con.find({
+      users: {$in: [req.params.userId]}
+    })
+
+    return res.json(con) 
+  } catch (err) {
+    next(err)
+  }
+}
+
+exports.selectedcon = async (req,res,next) => {
+  try {
+    const con =await Con.findOne({
+      users: {$all: [req.params.firstId, req.params.secondId]}
+    })
+
+    res.json(con)
+  } catch (err) {
+    next(err)
+  }
+}
