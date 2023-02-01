@@ -45,11 +45,11 @@ exports.getallmessages = async (req,res,next) => {
 
 exports.getsinglemessage = async (req,res,next) => {
   try {
-    const messages =await Messages.findOne({
+    const messages = await Messages.find({
       conversation: {$all: [req.params.firstId, req.params.secondId]}
     })
 
-    res.json(messages)
+    return res.json(messages) 
   } catch (err) {
     next(err)
   }
