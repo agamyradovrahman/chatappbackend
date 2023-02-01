@@ -20,10 +20,11 @@ exports.addMessage = async (req, res, next) => {
 exports.addMessages = async (req, res, next) => {
   try {
     const { from, to, message } = req.body;
-    const data = await Messages.create({
+    const data = await Messages.create({ 
       message: message,
       to: to,
       sender: from,
+      conversation: [from,to] 
     });
 
     if (data) return res.json({ msg: "Message added successfully." });
@@ -39,5 +40,17 @@ exports.getallmessages = async (req,res,next) => {
     return res.json(data)
   } catch (err) {
     next(err);
+  }
+}
+
+exports.getsinglemessage = async (req,res,next) => {
+  try {
+    const messages =await Messages.findOne({
+      conversation: {$all: [req.params.firstId, req.params.secondId]}
+    })
+
+    res.json(messages)
+  } catch (err) {
+    next(err)
   }
 }
