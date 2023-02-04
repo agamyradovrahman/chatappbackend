@@ -19,12 +19,12 @@ exports.addMessage = async (req, res, next) => {
 
 exports.addMessages = async (req, res, next) => {
   try {
-    const { from, to, message } = req.body;
+    const { from, too, message } = req.body;
     const data = await Messages.create({ 
       message: message,
-      to: to,
+      to: too,
       sender: from, 
-      users: [from ,to] 
+      users: [from ,too]    
     });
 
     if (data) return res.json({ msg: "Message added successfully." });
