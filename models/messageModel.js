@@ -4,16 +4,18 @@ const MessageSchema = mongoose.Schema(
   {
     message: {
       type: String,
-      required: true,
+      required: true, 
     },
-    users: Array,
+    users: [
+      from, too
+    ],
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
     to: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId, 
       ref: "User",
       required: true,  
     },
