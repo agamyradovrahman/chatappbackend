@@ -8,16 +8,18 @@ const MessageSchema = mongoose.Schema(
     },
     users: Array,
     sender: {
-      type: String,
-      required: true, 
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
     to: {
-      type: String,
-
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,  
     },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 
