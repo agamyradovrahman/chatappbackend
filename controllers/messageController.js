@@ -42,9 +42,10 @@ exports.getallmessages = async (req,res,next) => {
     next(err);
   }
 }
-
+ 
 exports.getsinglemessage = async (req,res,next) => {
   try {
+    const {user1, user2} = req.body
     const messages = await Messages.find({
       conversation: {$all: [req.params.firstId, req.params.secondId]}
     })
