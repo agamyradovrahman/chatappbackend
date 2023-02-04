@@ -43,15 +43,16 @@ exports.getallmessages = async (req,res,next) => {
   }
 }
  
-exports.getsinglemessage = async (req,res,next) => {
+exports.getsinglemessage = async (req,res,next) => { 
   try {
     const {user1, user2} = req.body
     const messages = await Messages.find({
-      conversation: {$all: [req.params.firstId, req.params.secondId]}
+      from: {$in: [user1 || user2]},
+      to: {$in: [user1 || user2]},
     })
 
     return res.json(messages) 
   } catch (err) {
-    next(err)
+    next(err) 
   }
 }
