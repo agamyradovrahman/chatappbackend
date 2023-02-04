@@ -6,5 +6,5 @@ const ConSchema = new mongoose.Schema({
     timestamps: true
 }
 )
-
-module.exports = mongoose.model("Con" , ConSchema)
+ 
+module.exports = mongoose.model("Con" , ConSchema) 

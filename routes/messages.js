@@ -6,6 +6,6 @@ const router = require("express").Router();
 router.route("/addmsgs/").post(isAuthenticatedUser, addMessage);
 router.route("/getmsgs/").get(getallmessages);
 router.route("/getmsgs/").get(getallmessages);
-router.route("/getmsg/:firstId/:secondId").get(isAuthenticatedUser, getsinglemessage);
+router.route("/getsinglemsg/").get(isAuthenticatedUser, getsinglemessage);
 
-module.exports = router;  
+module.exports = router;

@@ -5,4 +5,4 @@ router.route("/addcon/").post(addCon);
 router.route("/:userId").get(getconuser)
 router.route("/:firstId/:secondId").get(selectedcon)
 
-module.exports = router; 
+module.exports = router;  

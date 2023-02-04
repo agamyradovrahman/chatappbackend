@@ -9,11 +9,11 @@ exports.addCon = async (req,res,next) => {
 
     }
 
-    const con = await Con.create({
+    const con = await Con.create({ 
         users: [user1, user2]
     })
     return res.json(con)
-  } catch (err) {
+  } catch (err) { 
     next(err)
   }
 }
@@ -32,6 +32,7 @@ exports.getconuser = async (req,res,next) => {
 
 exports.selectedcon = async (req,res,next) => {
   try {
+    const {user1, user2} = req.body
     const con =await Con.findOne({
       users: {$all: [req.params.firstId, req.params.secondId]}
     })

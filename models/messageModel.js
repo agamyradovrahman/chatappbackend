@@ -4,11 +4,9 @@ const MessageSchema = mongoose.Schema(
   {
     message: {
       type: String,
-      required: true
+      required: true,
     },
-    conversation: { 
-      type: Array,
-    }, 
+    users: Array,
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -17,11 +15,10 @@ const MessageSchema = mongoose.Schema(
     to: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
   },
   {
-    timestamps: true,
+    timestamps: true, 
   }
 );
 

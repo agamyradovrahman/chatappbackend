@@ -15,7 +15,7 @@ exports.addMessage = async (req, res, next) => {
   } catch (ex) {
     next(ex);
   }
-}; 
+};      
 
 exports.addMessages = async (req, res, next) => {
   try {
@@ -23,15 +23,15 @@ exports.addMessages = async (req, res, next) => {
     const data = await Messages.create({ 
       message: message,
       to: to,
-      sender: from,
-      conversation: [from,to] 
+      sender: from, 
+      users: [from ,to] 
     });
 
     if (data) return res.json({ msg: "Message added successfully." });
     else return res.json({ msg: "Failed to add message to the database" });
   } catch (ex) {
     next(ex);
-  }
+  } 
 }; 
 
 exports.getallmessages = async (req,res,next) => {
