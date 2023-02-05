@@ -1,7 +1,7 @@
 const Messages = require("../models/messageModel");
 
 
-exports.addMessage = async (req, res, next) => {
+/* exports.addMessage = async (req, res, next) => {
   try {
     const { from, to, message } = req.body;
     const data = await Messages.create({
@@ -15,7 +15,7 @@ exports.addMessage = async (req, res, next) => {
   } catch (ex) {
     next(ex);
   }
-};      
+};      */
 
 exports.addMessages = async (req, res, next) => {
   try {
@@ -27,7 +27,7 @@ exports.addMessages = async (req, res, next) => {
       users: [from ,too]    
     });
 
-    if (data) return res.json({ msg: "Message added successfully." });
+    if (data) return res.json(data);
     else return res.json({ msg: "Failed to add message to the database" });
   } catch (ex) {
     next(ex);
@@ -51,7 +51,7 @@ exports.getsinglemessage = async (req,res,next) => {
       to: {$in: [user1 || user2]},
     })
 
-    return res.json(messages) 
+    return res.json(messages)  
   } catch (err) {
     next(err) 
   }
