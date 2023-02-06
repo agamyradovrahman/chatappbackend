@@ -6,6 +6,6 @@ const router = require("express").Router();
 router.route("/addmsgs/").post(addMessages);
 router.route("/getmsgs/").get(getallmessages);
 router.route("/getmsgs/").get(getallmessages);
-router.route("/getsinglemsg/").get(getsinglemessage);
+router.route("/getsinglemsg/:firstId/:secondId").get(getsinglemessage);
 
 module.exports = router; 

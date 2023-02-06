@@ -45,9 +45,8 @@ exports.getallmessages = async (req,res,next) => {
   
 exports.getsinglemessage = async (req,res,next) => { 
   try {
-    const {useridd, friendid} = req.body
     const messages = await Messages.find({
-      users: {$all: [useridd, friendid]},
+      users: {$all: [req.params.firstId, req.params.secondId]},
     })
 
     return res.json(messages)  
