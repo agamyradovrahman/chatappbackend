@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 exports.addCon = async (req,res,next) => {
   try {
     const {user1, user2} = req.body
-    const user = await User.findOne({username: user2})
+    const user = await User.find({username: user2})
     const userr = user._id
     
     if(!user){
@@ -18,12 +18,12 @@ exports.addCon = async (req,res,next) => {
     }
 
     const con = await Con.create({ 
-        users: [user1, userr]
+        users: [user1, user._id]
     }) 
-    return res.json(user._id) 
-  } catch (err) { 
+    return res.json(user) 
+  } catch (err) {  
     next(err)
-  }
+  } 
 }
 
 exports.getconuser = async (req,res,next) => {
