@@ -11,14 +11,14 @@ exports.addCon = async (req,res,next) => {
       return res.json({msg: "User is not exist", status: false})
     }
   
-    const con1 = await Con.findOne({users: [user1, userr})
+    const con1 = await Con.findOne({users: [user1, userr]})
     if(con1){
         return res.json({msg: "Conversation is already exist", status: false})
 
     }
 
     const con = await Con.create({ 
-        users: [user1, userr]
+        users: [user1, userr] 
     }) 
     return res.json(con)  
   } catch (err) { 
