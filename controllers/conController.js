@@ -18,9 +18,9 @@ exports.addCon = async (req,res,next) => {
     }
 
     const con = await Con.create({ 
-        users: [user1, user._id]
+        users: [user1, userr]
     })
-    return res.json(user) 
+    return res.json(userr) 
   } catch (err) { 
     next(err)
   }
