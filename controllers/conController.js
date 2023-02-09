@@ -4,20 +4,20 @@ const User = require("../models/userModel");
 exports.addCon = async (req,res,next) => {
   try {
     const {user1, user2} = req.body
-    const userid = await User.findOne({username: user2})
+    const user = await User.findOne({username: user2})
     
     if(!userid){
       return res.json({msg: "User is not exist", status: false})
     }
  
-    const con1 = await Con.findOne({users: [user1, userid]})
+    const con1 = await Con.findOne({users: [user1, user._id]})
     if(con1){
         return res.json({msg: "Conversation is already exist", status: false})
 
     }
 
     const con = await Con.create({ 
-        users: [user1, user2]
+        users: [user1, user._id]
     })
     return res.json(con)
   } catch (err) { 
