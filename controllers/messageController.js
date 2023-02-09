@@ -23,7 +23,7 @@ exports.addMessages = async (req, res, next) => {
     const data = await Messages.create({ 
       message: message,
       to: too,
-      sender: from, 
+      sender: from,  
       users: [from ,too]    
     });
 
