@@ -40,12 +40,10 @@ module.exports.login = async (req, res, next) => {
     }
     delete adam.password; 
   
-    const token = user.getJwtToken();
-    res.cookie("jwt", token, { httpOnly: true});
     sendToken(adam,201,res);
   } catch (err) {
     next(err);
-  }s
+  }s 
 };
 
 module.exports.getallusers = async (req, res, next) => {
