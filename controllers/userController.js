@@ -41,11 +41,11 @@ module.exports.login = async (req, res, next) => {
     }
     delete adam.password;
   
-    res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 });
+    res.cookie("jwt", token);
     sendToken(adam,201,res);
   } catch (err) {
     next(err);
-  }
+  }s
 };
 
 module.exports.getallusers = async (req, res, next) => {
