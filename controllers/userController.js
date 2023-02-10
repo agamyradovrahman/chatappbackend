@@ -29,6 +29,7 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {
   try {
+    const {token} = req.cookies
     const { username, password } = req.body;
     adam = await User.findOne({ username });
     if (!adam) {
@@ -39,7 +40,8 @@ module.exports.login = async (req, res, next) => {
       return res.json({ msg: "Incorrect Username or Password", status: false });
     }
     delete adam.password;
-
+  
+    res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 });
     sendToken(adam,201,res);
   } catch (err) {
     next(err);
