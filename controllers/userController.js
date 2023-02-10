@@ -29,7 +29,6 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {
   try {
-    const {token} = req.cookies
     const { username, password } = req.body;
     adam = await User.findOne({ username });
     if (!adam) {
@@ -39,9 +38,10 @@ module.exports.login = async (req, res, next) => {
     if (!isPasswordValid) {
       return res.json({ msg: "Incorrect Username or Password", status: false });
     }
-    delete adam.password;
+    delete adam.password; 
   
-    res.cookie("jwt", token);
+    const token = user.getJwtToken();
+    res.cookie("jwt", token, { httpOnly: true});
     sendToken(adam,201,res);
   } catch (err) {
     next(err);
