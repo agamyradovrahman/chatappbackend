@@ -8,4 +8,4 @@ router.route("/getmsgs/").get(getallmessages);
 router.route("/getmsgs/").get(getallmessages);
 router.route("/getsinglemsg/:firstId/:secondId").get(isAuthenticatedUser, getsinglemessage);
 
-module.exports = router;  
+module.exports = router;   
