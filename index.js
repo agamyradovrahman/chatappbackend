@@ -40,10 +40,10 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 const io = socket(server, {
   cors: {
-    origin: "https://chatapp-backend-rvtt.onrender.com",
+    origin: "http://localhost:3000",
     credentials: true,
   },
-});
+}); 
 
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
