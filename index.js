@@ -50,12 +50,15 @@ io.on("connection", (socket) => {
   global.chatSocket = socket;
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);
+    console.log("sokecket added")
   });
 
   socket.on("send-msg", (data) => {
+    console.log("sokecket drnf")
     const sendUserSocket = onlineUsers.get(data.to);
     if (sendUserSocket) {
       socket.to(sendUserSocket).emit("msg-recieve", data.msg);
     }
+    console.log("sokecket recieve")
   });
-});
+}); 
