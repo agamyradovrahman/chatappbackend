@@ -38,7 +38,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running!");
 });
 
-const io = socket("https://chatapp-backend-rvtt.onrender.com", {
+const io = socket(server, {
   cors: {
     origin: "http://localhost:3000",
     credentials: true,
