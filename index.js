@@ -5,10 +5,12 @@ const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 const conRoutes = require("./routes/conn");
-const cookieParser = require("cookie-parser"); 
+const cookieParser = require("cookie-parser");
 const socket = require("socket.io");
 
 const cors = require("cors");
+const corsOptions = require("./config/corsOption");
+const credentials = require("./middleware/credentials");
 
 dotenv.config();
 
@@ -26,9 +28,12 @@ const connectDatabase = async () => {
 };
 connectDatabase();
 
-app.use(cors());
+app.use(credentials)
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
+
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/msg", messageRoutes);
@@ -43,14 +48,14 @@ const io = socket(server, {
     origin: "http://localhost:3000",
     credentials: true,
   },
-}); 
+});
 
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
   global.chatSocket = socket;
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);
-    console.log("sokecket added")
+    console.log("sokecket added");
   });
 
   socket.on("send-msg", (data) => {
@@ -58,6 +63,6 @@ io.on("connection", (socket) => {
     if (sendUserSocket) {
       socket.to(sendUserSocket).emit("msg-recieve", data.msg);
     }
-    console.log("sokecket recieve")
+    console.log("sokecket recieve");
   });
-}); 
+});

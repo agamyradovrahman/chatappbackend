@@ -5,10 +5,11 @@ exports.addCon = async (req,res,next) => {
   try {
     const {user1, user2} = req.body
     const user = await User.findOne({username: user2})
-    const userr = user._id.toString()
+    const userr = user?._id.toString()
     
     if(!user){
       return res.json({msg: "User is not exist", status: false})
+      
     }
   
     const con1 = await Con.findOne({users: [user1, userr]})

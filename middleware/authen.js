@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken")
 exports.isAuthenticatedUser = async (req,res,next) => {
     try {
         const {token} = req.cookies;
-
         if(!token) {
             return res.json("Please login for acces this resource")
         }

@@ -22,8 +22,20 @@ module.exports.register = async (req, res, next) => {
 
     delete user.password;
     return res.json({ status: true, user, token });
-  } catch (ex) {
-    next(ex);
+  } catch (error) {
+
+   if (error.name === "ValidationError") {
+      let errors = {};
+
+      Object.keys(error.errors).forEach((key) => {
+        errors[key] = error.errors[key].message; 
+      });
+
+      return res.status(400).send(errors);
+    }
+
+    res.status(500).send("Something went wrong");
+
   }
 };
 
@@ -43,7 +55,7 @@ module.exports.login = async (req, res, next) => {
     sendToken(adam,201,res);
   } catch (err) {
     next(err);
-  }s 
+  }
 };
 
 module.exports.getallusers = async (req, res, next) => {
@@ -67,15 +79,32 @@ module.exports.getsingleuser = async (req, res, next) => {
   }
 }
 
+module.exports.singleuser = async (req, res, next) => {
+  try {
+    const user = await User.findOne({username: req.params.username})
+    if (!user) { 
+      return res.json({msg: "user is not exist", status: false})
+    }
+    return res.json({status: true, user})
+  } catch (err) {
+    next(err)
+  }
+} 
+
+
 
 module.exports.logoutUser = async (req, res,next) => {
   try {
+    res.clearCookie('token');
     res.cookie("token", null, {
       expires: new Date(Date.now()),
       httpOnly: true,
     });
 
-    res.status(200).json({
+    const sagat = new Date(Date.now())
+    console.log(sagat)
+
+    res.status(200).json({ 
       success: true,
       message: "Log out success",
     })
