@@ -15,9 +15,11 @@ const credentials = require("./middleware/credentials");
 
 dotenv.config();
 
+const mongourl = process.env.MONGO_URL.toString()
+
 const connectDatabase = async () => {
   try {
-    const connection = await mongoose.connect(process.env.MONGO_URL.toString(), {
+    const connection = await mongoose.connect(mongourl, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
