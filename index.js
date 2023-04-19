@@ -15,7 +15,7 @@ const credentials = require("./middleware/credentials");
 
 dotenv.config();
 
-const mongourl = process.env.MONGO_URL.toString()
+const mongourl = process.env.MONGO_URL
 
 const connectDatabase = async () => {
   try {
