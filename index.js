@@ -19,7 +19,7 @@ const mongourl = process.env.MONGO_URL
 
 const connectDatabase = async () => {
   try {
-    const connection = await mongoose.connect(mongourl, {
+    const connection = await mongoose.connect("mongodb+srv://rahman1205:rahman1205@rahman1205.xfhlxmk.mongodb.net/?retryWrites=true&w=majority", {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
