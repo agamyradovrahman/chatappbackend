@@ -1,4 +1,4 @@
-const  {register, login, getallusers, getsingleuser, logoutUser, singleuser}  = require("../controllers/userController")
+const  {register, login, getallusers, getsingleuser, logoutUser, singleuser, Rename, Uploadavatar}  = require("../controllers/userController")
 
 const router = require("express").Router();
 
@@ -8,6 +8,8 @@ router.get("/logout", logoutUser)
 router.get("/getallusers", getallusers)
 router.get("/getsingleuser/:id", getsingleuser)
 router.get("/singleuser/:username", singleuser)
+router.put("/user/rename",Rename)
+router.put("/user/uploadavatar",Uploadavatar)
 
 
 

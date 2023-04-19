@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 const conRoutes = require("./routes/conn");
+const imgRoutes = require("./routes/image")
 const cookieParser = require("cookie-parser");
 const socket = require("socket.io");
 
@@ -38,6 +39,8 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/msg", messageRoutes);
 app.use("/api/cons", conRoutes);
+app.use("/api/upload", imgRoutes); 
+
 
 const server = app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running!");

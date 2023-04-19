@@ -54,3 +54,23 @@ exports.getsinglemessage = async (req,res,next) => {
     next(err) 
   }
 }
+
+
+exports.deletemesg = async (req,res,next) => {
+  try {
+    const {msgid} = req.body
+
+    const message = Messages.findById({id: msgid})
+
+    if(!message) {
+      return res.json({msg: "There is no message", status: false})
+    }
+
+    await Messages.findByIdAndDelete(message)
+
+    return res.json({msg: "message deleted", status: true})
+
+  } catch (error) {
+    next(error)
+  }
+}

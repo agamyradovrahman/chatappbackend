@@ -12,7 +12,7 @@ exports.addCon = async (req,res,next) => {
       
     }
   
-    const con1 = await Con.findOne({users: [user1, userr]})
+    const con1 = await Con.findOne({users: {$all: [user1, userr]}})
     if(con1){
         return res.json({msg: "Conversation is already exist", status: false})
 
@@ -21,7 +21,7 @@ exports.addCon = async (req,res,next) => {
     const con = await Con.create({ 
         users: [user1, userr] 
     }) 
-    return res.json(con)  
+    return res.json({con, msg: "Conversation created  ", status: true})  
   } catch (err) { 
     next(err)
   }
@@ -50,4 +50,25 @@ exports.selectedcon = async (req,res,next) => {
   } catch (err) {
     next(err)
   }
+}
+
+exports.deletecon = async (req,res,next) => {
+  try {
+    const {user1, user2} = req.body
+    console.log(user1, user2)
+
+  const con = await Con.findOne({ users: {$all: [user1, user2]} })
+  if (!con) {
+    return res.json({msg: "There is no Conversation", status: false})
+  }
+
+  await Con.findByIdAndDelete(con)
+  
+  return res.json({msg: "Conversation deleted succesfully", status: true})
+  } catch (error) {
+    next(error)
+  }
+
+  
+
 }

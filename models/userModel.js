@@ -21,8 +21,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your password!"],
     minlength: [3, "Password should be greater than 3 characters"],
-  }
+  },
+  avatar: {
+    type: String,
+    default: "https://res.cloudinary.com/dw51bz9id/image/upload/v1681431626/ka2ghfx3osg6rseopmxf.png"
 },
+},  
 { 
   timestamps: true,
 });
