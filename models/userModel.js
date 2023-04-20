@@ -32,9 +32,10 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
+const privkey = process.env.JWT_SECRET_KEY
 
 userSchema.methods.getJwtToken = function(){
-  return jwt.sign({id: this.id}, process.env.JWT_SECRET_KEY,{
+  return jwt.sign({id: this.id}, "87a57f23dec38d4c591206ab8686d2c93fe876243a98c39cc6aa541744749ed7",{
     expiresIn: process.env.JTW_EXPIRES
   })
 };
