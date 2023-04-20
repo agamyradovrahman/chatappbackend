@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const sendToken = (user,statusCode,res) =>{
     try {
         const token = user.getJwtToken();

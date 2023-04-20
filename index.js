@@ -45,7 +45,7 @@ app.use("/api/upload", imgRoutes);
 
 
 const server = app.listen(process.env.PORT || 5000, () => {
-  console.log("Backend server is running!");
+  console.log("Backend serverr is running!");
 });
 
 const io = socket(server, {
