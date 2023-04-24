@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    "http://localhost:3000"
+    "https://chatappfrontend-5z2y.onrender.com"
 ]; 
  
 module.exports = allowedOrigins; 
