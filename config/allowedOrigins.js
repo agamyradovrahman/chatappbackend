@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    "https://chatapp-backend-rvtt.onrender.com"
+    "htp://localhost:3000"
 ]; 
  
 module.exports = allowedOrigins; 
