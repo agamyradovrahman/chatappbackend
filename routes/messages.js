@@ -3,9 +3,9 @@ const { isAuthenticatedUser } = require("../middleware/authen");
 const router = require("express").Router();
 
 
-router.route("/addmsgs/").post(isAuthenticatedUser, addMessages);
+router.route("/addmsgs/").post(addMessages);
 router.route("/getmsgs/").get(getallmessages);
 router.route("/getmsgs/").get(getallmessages);
-router.route("/getsinglemsg/:firstId/:secondId").get(isAuthenticatedUser, getsinglemessage);
+router.route("/getsinglemsg/:firstId/:secondId").get(getsinglemessage);
 
-module.exports = router;   
+module.exports = router;    
