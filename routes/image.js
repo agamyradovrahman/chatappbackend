@@ -5,4 +5,4 @@ const multer = require("../middleware/multer");
 
 router.post("/img", multer.single("image"), uploadImage)
 
-module.exports = router;  
+module.exports = router;
