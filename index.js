@@ -50,7 +50,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 const io = socket(server, {
   cors: {
-    origin: "https://chatappfrontend-5z2y.onrender.com",
+    origin: "https://polite-sunshine-4d436e.netlify.app",
     credentials: true,
   },
 });
