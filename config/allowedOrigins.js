@@ -1,6 +1,6 @@
 const allowedOrigins = [
-    "https://chatappfrontend-5z2y.onrender.com",
+    "https://polite-sunshine-4d436e.netlify.app",
     "http://localhost:3000"
 ]; 
- 
+  
 module.exports = allowedOrigins; 
