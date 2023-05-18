@@ -8,7 +8,7 @@ const apikey = process.env.CLOUD_API_KEY
 
 cloudinary.config({
   cloud_name: cloudname,
-  api_key: apikey,
+  api_key: 346597522261813,
   api_secret: apisecret,
   secure: true,
 });
